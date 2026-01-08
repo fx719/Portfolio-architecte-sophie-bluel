@@ -16,7 +16,7 @@ export const displayCategoriesButtons = (parentDiv, fetchedData) => {
                 for (let data of fetchedData) {
                     let categoryButton = document.createElement("button")
                     categoryButton.setAttribute('class', 'work-category-button')
-                    categoryButton.setAttribute('id', `button-category-number-${data.id}`)
+                    categoryButton.setAttribute('id', data.id)
                     categoryButton.innerText = data.name
                     parentDiv.appendChild(categoryButton)
                 }
