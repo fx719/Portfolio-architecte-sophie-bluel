@@ -1,9 +1,3 @@
-import { getDataFromAPI } from "./lib/fetchDataFromAPI.js"
-
-
-const gallery = document.querySelector('.gallery')
-const works = await getDataFromAPI("http://127.0.0.1:5678/api/works")
-
 
 /**
  * Appends pictures and their titles to an element, idealy a div (parentDiv), from an API reached with the getDataFromAPI function.
@@ -11,7 +5,7 @@ const works = await getDataFromAPI("http://127.0.0.1:5678/api/works")
  * @param {Element} parentDiv 
  * @param {{id:number,title:string,imageUrl:string,categoryId:number,userId:number}[]} fetchedData 
  */
-const displayPictures = (parentDiv, fetchedData) => {
+export const displayPictures = (parentDiv, fetchedData) => {
     try {
         const hasFoundData = fetchedData != null || fetchedData != undefined
         const hasFoundParentDiv = parentDiv != null || parentDiv != undefined
@@ -36,6 +30,3 @@ const displayPictures = (parentDiv, fetchedData) => {
         console.error(error.message)
     }
 }
-
-
-displayPictures(gallery, works)

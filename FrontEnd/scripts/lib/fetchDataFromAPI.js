@@ -1,10 +1,9 @@
 /**
  * Uses the HTTP GET method and the JavaScript fetch function to fetch data, returned as an Array of Json Objects.
  * If the response from the fetch is incorrect, throws an Error.
- * @function 
  * @async
  * @param {string} fetchedUrl
- * @returns {{id:number,title:string,imageUrl:string,categoryId:number,userId:number}[]}
+ * @returns {JSON[]}
  */
 export async function getDataFromAPI(fetchedUrl) {
 
