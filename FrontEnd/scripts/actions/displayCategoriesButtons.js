@@ -5,7 +5,7 @@
  * @param {{id:number,title:string,imageUrl:string,categoryId:number,userId:number}[]} fetchedData 
  */
 
-export const displayCategoriesButtons = (parentDiv, fetchedData) => {
+const displayCategoriesButtons = (parentDiv, fetchedData) => {
 
     try {
 

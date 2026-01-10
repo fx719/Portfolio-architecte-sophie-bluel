@@ -5,7 +5,7 @@
  * @param {string} fetchedUrl
  * @returns {JSON[]}
  */
-export async function getDataFromAPI(fetchedUrl) {
+async function getDataFromAPI(fetchedUrl) {
 
     try {
 

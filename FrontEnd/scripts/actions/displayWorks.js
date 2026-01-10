@@ -5,7 +5,7 @@
  * @param {Element} parentDiv 
  * @param {{id:number,title:string,imageUrl:string,categoryId:number,userId:number}[]} fetchedData 
  */
-export const displayWorks = (parentDiv, fetchedData) => {
+const displayWorks = (parentDiv, fetchedData) => {
     try {
         const hasFoundData = fetchedData != null || fetchedData != undefined
         const hasFoundParentDiv = parentDiv != null || parentDiv != undefined
@@ -38,7 +38,7 @@ export const displayWorks = (parentDiv, fetchedData) => {
  * @param {Element} parentDiv 
  * @param {{id:number,title:string,imageUrl:string,categoryId:number,userId:number}[]} fetchedData 
  */
-export const displayWorksByCategory = (parentDiv, fetchedData) => {
+const displayWorksByCategory = (parentDiv, fetchedData) => {
     try {
         const hasFoundData = fetchedData != null || fetchedData != undefined
         const hasFoundParentDiv = parentDiv != null || parentDiv != undefined
