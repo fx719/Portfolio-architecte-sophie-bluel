@@ -254,7 +254,7 @@ li a:hover {
 	color: var(--titles-and-buttons-color);
 }
 
-.work-category-button:hover {
+.work-category-button:focus {
 	background-color: #1D6154;
 	color: #FFF;
 }
