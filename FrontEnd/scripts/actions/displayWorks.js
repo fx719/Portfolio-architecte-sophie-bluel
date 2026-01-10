@@ -13,6 +13,9 @@ const displayWorks = (parentDiv, fetchedData) => {
             if (hasFoundParentDiv) {
                 for (let data of fetchedData) {
                     let figure = parentDiv.appendChild(document.createElement("figure"))
+                    figure.setAttribute('data-id', data.id)
+                    figure.setAttribute('data-name', data.title)
+                    figure.setAttribute('data-category-id', data.categoryId)
                     let figureImg = figure.appendChild(document.createElement("img"))
                     figureImg.setAttribute("src", data.imageUrl)
                     figureImg.setAttribute("alt", data.title)
