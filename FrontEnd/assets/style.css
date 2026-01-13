@@ -7,6 +7,7 @@
 :root {
 	--titles-and-buttons-color: #1D6154;
 	--main-title-and-nav-hover-color: #B1663C;
+	--inputs-shadowing: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
 html,
@@ -198,8 +199,8 @@ nav li a {
 	color: black;
 }
 
-li a:hover {
-	color: var(--main-title-and-nav-hover-color);
+li a:focus {
+	font-weight: bold;
 }
 
 #introduction {
@@ -255,7 +256,7 @@ li a:hover {
 }
 
 .work-category-button:focus {
-	background-color: #1D6154;
+	background-color: var(--titles-and-buttons-color);
 	color: #FFF;
 }
 
@@ -297,7 +298,7 @@ li a:hover {
 	height: 50px;
 	font-size: 1.2em;
 	border: none;
-	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+	box-shadow: var(--inputs-shadowing);
 }
 
 #contact label {
@@ -306,7 +307,7 @@ li a:hover {
 
 #contact textarea {
 	border: none;
-	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+	box-shadow: var(--inputs-shadowing);
 }
 
 input[type="submit"] {
@@ -324,4 +325,61 @@ footer nav ul {
 	display: flex;
 	justify-content: flex-end;
 	margin: 2em
+}
+
+#auth-section {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 1rem;
+}
+
+#auth-section h2 {
+	margin-bottom: 1rem;
+}
+
+.auth-form {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	max-width: 100%;
+	width: 30%;
+}
+
+.auth-form form {
+	display: flex;
+	flex-direction: column;
+	font-family: 'Work Sans';
+	gap: 1.2em;
+}
+
+.auth-form form div {
+	display: flex;
+	flex-direction: column;
+	gap: 0.2em;
+}
+
+.auth-form input {
+	max-width: 100%;
+	border: none;
+	box-sizing: border-box;
+	box-shadow: var(--inputs-shadowing);
+	height: 35px;
+	width: 100%;
+}
+
+.auth-form input[type="submit"] {
+	border: none;
+	padding: 1em;
+	box-shadow: none;
+	height: auto;
+	max-width: 100%;
+	width: 60%;
+}
+
+#forgotten-password {
+	color: black;
+	max-width: 100%;
+	align-self: center;
 }
