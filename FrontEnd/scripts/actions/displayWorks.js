@@ -13,9 +13,9 @@ const displayWorks = (parentDiv, fetchedData) => {
             if (hasFoundParentDiv) {
                 for (let data of fetchedData) {
                     let figure = parentDiv.appendChild(document.createElement("figure"))
-                    figure.setAttribute('data-id', data.id)
-                    figure.setAttribute('data-name', data.title)
-                    figure.setAttribute('data-category-id', data.categoryId)
+                    figure.dataset.id = data.id
+                    figure.dataset.name = data.title
+                    figure.dataset.categoryId = data.categoryId
                     let figureImg = figure.appendChild(document.createElement("img"))
                     figureImg.setAttribute("src", data.imageUrl)
                     figureImg.setAttribute("alt", data.title)
@@ -36,36 +36,38 @@ const displayWorks = (parentDiv, fetchedData) => {
 
 
 /**
- * Removes non-filtered pictures and appends new ones and their titles to an element, idealy a div (parentDiv), from an API reached with the getDataFromAPI function.
- * Throws an Error if the requested Data can't be found or if the parent Element can't be found in the DOM.
+ * Filters an array of  Element's (idealy a div) children, display them by adding a style=display:block; attribute.
+ * Sets a display:none; to the children the user wants to hide.
+ * If the user wants to see all the children of the Element, each of them gets a display:block attribute.
+ * Throws an Error if the parent div Element can't be found.
  * @param {Element} parentDiv 
- * @param {{id:number,title:string,imageUrl:string,categoryId:number,userId:number}[]} fetchedData 
+ * @param {number} filterCategoryId 
  */
-const displayWorksByCategory = (parentDiv, fetchedData) => {
+const displayWorksByCategory = (parentDiv, filterCategoryId) => {
+
     try {
-        const hasFoundData = fetchedData != null || fetchedData != undefined
         const hasFoundParentDiv = parentDiv != null || parentDiv != undefined
-        if (hasFoundData) {
-            if (hasFoundParentDiv) {
-                while (parentDiv.firstChild) {
-                    parentDiv.removeChild(parentDiv.firstChild)
-                }
-                for (let data of fetchedData) {
-                    let figure = parentDiv.appendChild(document.createElement("figure"))
-                    let figureImg = figure.appendChild(document.createElement("img"))
-                    figureImg.setAttribute("src", data.imageUrl)
-                    figureImg.setAttribute("alt", data.title)
-                    let figureCaption = figure.appendChild(document.createElement("figcaption"))
-                    figureCaption.innerText = data.title
+
+        if (hasFoundParentDiv) {
+            const parentDivChildren = Array.from(parentDiv.children)
+            if (filterCategoryId === 0) {
+                for (let parentDivChild of parentDivChildren) {
+                    parentDivChild.setAttribute("style", "display:block;")
                 }
             } else {
-                throw new Error('Element cant be found')
+                let elementsToDisplay = parentDivChildren.filter(parentDivChild => parseInt(parentDivChild.dataset.categoryId) === filterCategoryId)
+                for (let parentDivChild of parentDivChildren) {
+                    parentDivChild.setAttribute("style", "display:none;")
+                }
+                for (let elementToDisplay of elementsToDisplay) {
+                    elementToDisplay.setAttribute("style", "display:block;")
+                }
             }
         } else {
-            throw new Error('Error when retrieving Data')
+            throw new Error('Element cant be found')
         }
-
     } catch (error) {
         console.error(error.message)
     }
+
 }

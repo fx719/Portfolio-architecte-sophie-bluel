@@ -2,7 +2,7 @@
  * Appends categorys'filters'buttons and their names to an element, idealy a div (parentDiv), from an API reached with the getDataFromAPI function.
  * Throws an Error if the requested Data can't be found or if the parent Element can't be found in the DOM.
  * @param {Element} parentDiv 
- * @param {{id:number,title:string,imageUrl:string,categoryId:number,userId:number}[]} fetchedData 
+ * @param {{id:number,name:string}[]} fetchedData 
  */
 
 const displayCategoriesButtons = (parentDiv, fetchedData) => {
@@ -16,7 +16,8 @@ const displayCategoriesButtons = (parentDiv, fetchedData) => {
                 for (let data of fetchedData) {
                     let categoryButton = document.createElement("button")
                     categoryButton.setAttribute('class', 'work-category-button')
-                    categoryButton.setAttribute('id', data.id)
+                    categoryButton.dataset.id = data.id
+                    categoryButton.dataset.name = data.name
                     categoryButton.innerText = data.name
                     parentDiv.appendChild(categoryButton)
                 }
