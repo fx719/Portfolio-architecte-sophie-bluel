@@ -378,8 +378,14 @@ footer nav ul {
 	width: 60%;
 }
 
-#forgotten-password {
+#link-forgotten-password {
 	color: black;
 	max-width: 100%;
 	align-self: center;
+}
+
+
+.flash-message-error {
+	color: black;
+	background-color: red;
 }
