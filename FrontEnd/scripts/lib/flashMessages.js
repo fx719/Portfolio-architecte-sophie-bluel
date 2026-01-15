@@ -1,4 +1,4 @@
 const flashMessageErrorAuth = document.createElement("p")
 flashMessageErrorAuth.setAttribute("class", "flash-message-error")
-flashMessageErrorAuth.innerText = "Erreur lors de la connexion : un ou plusieurs identifiant(s) est / sont incorrect(s)"
+flashMessageErrorAuth.innerText = "Erreur dans l’identifiant ou le mot de passe"
 

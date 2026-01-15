@@ -1,13 +1,9 @@
 const gallery = document.querySelector('.gallery')
 const categoriesButtonsDiv = document.querySelector('.categories-buttons')
+const authLink = document.getElementById('auth-link')
+const header = document.querySelector("header")
+const projectsTitle = document.querySelector(".projects-title")
 
-//if browser's configuration prevents session's storage persistence
-// const url = new URL(window.location)
-// if (url.searchParams) {
-//     const urlParams = url.searchParams
-//     window.sessionStorage.setItem('userId', parseInt(urlParams.get("userId")))
-//     window.sessionStorage.setItem('token', urlParams.get("token"))
-// }
 
 let works = []
 getDataFromAPI("http://127.0.0.1:5678/api/works")
@@ -31,3 +27,26 @@ getDataFromAPI("http://127.0.0.1:5678/api/categories")
             })
         }
     })
+
+if (isAuthentified) {
+    authLink.setAttribute("href", "#")
+    authLink.innerText = "logout"
+    addEditModBanner(header)
+    categoriesButtonsDiv.setAttribute("style", "display:none;")
+    addEditFormLink(projectsTitle)
+    const editModBanner = document.querySelector(".edit-mod-banner")
+    const editFormLink = document.querySelector(".edit-form-link-content")
+    authLink.addEventListener("click", (e) => {
+        e.preventDefault()
+        sessionStorage.clear()
+        editModBanner.setAttribute("style", "display:none;")
+        editFormLink.setAttribute("style", "display:none;")
+        categoriesButtonsDiv.removeAttribute("style")
+        authLink.setAttribute("href", "./pages/login.html")
+        authLink.innerText = "login"
+    }, { once: true })
+} else {
+
+}
+
+

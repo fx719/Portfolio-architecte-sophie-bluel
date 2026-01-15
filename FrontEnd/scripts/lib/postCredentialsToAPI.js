@@ -33,6 +33,3 @@ async function postCredentialsToAPI(fetchedUrl, userEmailData, userPasswordData)
     }
 
 }
-
-
-
