@@ -4,7 +4,6 @@ const authLink = document.getElementById('auth-link')
 const header = document.querySelector("header")
 const projectsTitle = document.querySelector(".projects-title")
 
-
 let works = []
 getDataFromAPI("http://127.0.0.1:5678/api/works")
     .then(data => {
@@ -32,21 +31,27 @@ if (isAuthentified) {
     authLink.setAttribute("href", "#")
     authLink.innerText = "logout"
     addEditModBanner(header)
+    const buttonDisplayAllProjects = document.getElementById('0')
+    buttonDisplayAllProjects.removeAttribute("autofocus")
     categoriesButtonsDiv.setAttribute("style", "display:none;")
     addEditFormLink(projectsTitle)
     const editModBanner = document.querySelector(".edit-mod-banner")
-    const editFormLink = document.querySelector(".edit-form-link-content")
+    const editFormLinkContent = document.querySelector(".edit-form-link-content")
     authLink.addEventListener("click", (e) => {
         e.preventDefault()
         sessionStorage.clear()
         editModBanner.setAttribute("style", "display:none;")
-        editFormLink.setAttribute("style", "display:none;")
+        editFormLinkContent.setAttribute("style", "display:none;")
         categoriesButtonsDiv.removeAttribute("style")
-        const buttonDisplayAllProjects = document.getElementById('0')
         buttonDisplayAllProjects.focus()
         authLink.setAttribute("href", "./pages/login.html")
         authLink.innerText = "login"
     }, { once: true })
+    let modal = null
+    const editFormLink = document.getElementById('edit-form-link')
+    editFormLink.addEventListener("click", displayModal)
+    const grid = document.querySelector(".projects-photo-grid")
+    console.log(grid.parentElement)
 } else {
 
 }
