@@ -42,6 +42,8 @@ if (isAuthentified) {
         editModBanner.setAttribute("style", "display:none;")
         editFormLink.setAttribute("style", "display:none;")
         categoriesButtonsDiv.removeAttribute("style")
+        const buttonDisplayAllProjects = document.getElementById('0')
+        buttonDisplayAllProjects.focus()
         authLink.setAttribute("href", "./pages/login.html")
         authLink.innerText = "login"
     }, { once: true })

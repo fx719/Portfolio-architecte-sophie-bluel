@@ -255,6 +255,8 @@ li a:focus {
 	color: var(--titles-and-buttons-color);
 }
 
+
+
 .work-category-button:focus {
 	background-color: var(--titles-and-buttons-color);
 	color: #FFF;
