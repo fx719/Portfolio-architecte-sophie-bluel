@@ -38,20 +38,12 @@ if (isAuthentified) {
     const editModBanner = document.querySelector(".edit-mod-banner")
     const editFormLinkContent = document.querySelector(".edit-form-link-content")
     authLink.addEventListener("click", (e) => {
-        e.preventDefault()
-        sessionStorage.clear()
-        editModBanner.setAttribute("style", "display:none;")
-        editFormLinkContent.setAttribute("style", "display:none;")
-        categoriesButtonsDiv.removeAttribute("style")
-        buttonDisplayAllProjects.focus()
-        authLink.setAttribute("href", "./pages/login.html")
-        authLink.innerText = "login"
+        logout(e, editModBanner, editFormLinkContent, buttonDisplayAllProjects)
     }, { once: true })
     let modal = null
     const editFormLink = document.getElementById('edit-form-link')
     editFormLink.addEventListener("click", displayModal)
     const grid = document.querySelector(".projects-photo-grid")
-    console.log(grid.parentElement)
 } else {
 
 }

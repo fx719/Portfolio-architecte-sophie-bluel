@@ -453,7 +453,6 @@ footer nav ul {
 
 .projects-modal-wrapper {
 	display: flex;
-	position: relative;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
