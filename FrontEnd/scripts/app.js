@@ -53,6 +53,13 @@ if (isAuthentified) {
     editFormLink.addEventListener("click", displayModal)
     const grid = document.querySelector(".projects-photo-grid")
 
+    //Closes modal with "Esc" or "Escape" keydown event
+    window.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" || e.key === "Esc") {
+            closeModal(e)
+        }
+    })
+
     //Event listener to logout the logged-in user.
     authLink.addEventListener("click", (e) => {
         logout(e, editModBanner, editFormLinkContent, buttonDisplayAllProjects)

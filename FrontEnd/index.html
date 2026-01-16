@@ -50,8 +50,8 @@
 			</div>
 			<aside id="edit-projects-modal" class="projects-modal" aria-hidden="true"
 				aria-labelledby="projects-modal-gallery-title" role="modal" style="display: none;">
-				<div class="projects-modal-wrapper">
-					<button id="close-modal-button"><i class="fa-solid fa-x fa-lg"></i></button>
+				<div class="projects-modal-wrapper modal-stop-propagation">
+					<button class="close-modal-button"><i class="fa-solid fa-x fa-lg"></i></button>
 					<div class="projects-modal-gallery">
 						<h2 id="projects-modal-gallery-title">Galerie photo</h2>
 						<div class="projects-photo-grid">
@@ -167,6 +167,7 @@
 	</footer>
 	<script src="./scripts/lib/fetchDataFromAPI.js"></script>
 	<script src="./scripts/lib/isAuthentified.js"></script>
+	<script src="./scripts/lib/stopPropagation.js"></script>
 	<script src="./scripts/actions/logout.js"></script>
 	<script src="./scripts/lib/addEditModBanner.js"></script>
 	<script src="./scripts/lib/addEditFormLink.js"></script>
