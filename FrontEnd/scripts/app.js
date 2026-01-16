@@ -54,10 +54,11 @@ if (isAuthentified) {
 
     //Displays modal-window 
     let modal = null
+    console.log(modal)
     const editFormLink = document.getElementById('edit-form-link')
     editFormLink.addEventListener("click", displayModal)
     const grid = document.querySelector(".projects-photo-grid")
-
+    console.log(document.querySelector(".projects-modal").attributes.style.value)
 
     window.addEventListener("keydown", (e) => {
         //Closes modal with "Esc" or "Escape" keydown event
@@ -65,7 +66,8 @@ if (isAuthentified) {
             closeModal(e)
         }
         //Makes sure the focus doesn't go out of the modal-window
-        if (e.key === 'Tab' && modal === null) {
+        if ((e.key === 'Tab') && (document.querySelector(".projects-modal").attributes.style.value !== "display: none;")) {
+
             focusInModal(e)
         }
     })
