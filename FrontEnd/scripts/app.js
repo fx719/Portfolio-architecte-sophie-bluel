@@ -4,6 +4,11 @@ const authLink = document.getElementById('auth-link')
 const header = document.querySelector("header")
 const projectsTitle = document.querySelector(".projects-title")
 
+//Uses those selectors to help maintain the focus in the modal-windows
+const focusableSelector = "button, a , input, texarea"
+let focusableElements = []
+let previouslyFocusedElement = null
+
 //Contacts the API to get the works'data, then displays them.
 let works = []
 getDataFromAPI("http://127.0.0.1:5678/api/works")
@@ -53,10 +58,15 @@ if (isAuthentified) {
     editFormLink.addEventListener("click", displayModal)
     const grid = document.querySelector(".projects-photo-grid")
 
-    //Closes modal with "Esc" or "Escape" keydown event
+
     window.addEventListener("keydown", (e) => {
+        //Closes modal with "Esc" or "Escape" keydown event
         if (e.key === "Escape" || e.key === "Esc") {
             closeModal(e)
+        }
+        //Makes sure the focus doesn't go out of the modal-window
+        if (e.key === 'Tab' && modal === null) {
+            focusInModal(e)
         }
     })
 
@@ -64,8 +74,6 @@ if (isAuthentified) {
     authLink.addEventListener("click", (e) => {
         logout(e, editModBanner, editFormLinkContent, buttonDisplayAllProjects)
     }, { once: true })
-
-} else {
 
 }
 
