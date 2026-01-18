@@ -3,7 +3,7 @@ const categoriesButtonsDiv = document.querySelector('.categories-buttons')
 const authLink = document.getElementById('auth-link')
 const header = document.querySelector("header")
 const projectsTitle = document.querySelector(".projects-title")
-
+const grid = document.querySelector(".projects-photo-grid")
 //Uses those selectors to help maintain the focus in the modal-windows
 const focusableSelector = "button, a , input, texarea"
 let focusableElements = []
@@ -15,6 +15,7 @@ getDataFromAPI("http://127.0.0.1:5678/api/works")
     .then(data => {
         works = data
         displayWorks(gallery, works)
+        displayWorksInModalGallery(grid, works)
     })
 
 
@@ -54,11 +55,11 @@ if (isAuthentified) {
 
     //Displays modal-window 
     let modal = null
-    console.log(modal)
+
     const editFormLink = document.getElementById('edit-form-link')
+    displayWorksInModalGallery(grid, works)
+
     editFormLink.addEventListener("click", displayModal)
-    const grid = document.querySelector(".projects-photo-grid")
-    console.log(document.querySelector(".projects-modal").attributes.style.value)
 
     window.addEventListener("keydown", (e) => {
         //Closes modal with "Esc" or "Escape" keydown event

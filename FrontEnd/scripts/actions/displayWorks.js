@@ -71,3 +71,46 @@ const displayWorksByCategory = (parentDiv, filterCategoryId) => {
     }
 
 }
+
+
+/**
+ * Appends pictures and their titles the projects grid displayed in the modal window,  from an API reached with the getDataFromAPI function.
+ * Throws an Error if the requested Data can't be found or if the parent Element can't be found in the DOM.
+ * @param {Element} parentDiv 
+ * @param {{id:number,title:string,imageUrl:string,categoryId:number,userId:number}[]} fetchedData 
+ */
+const displayWorksInModalGallery = (parentDiv, fetchedData) => {
+    try {
+        const hasFoundData = fetchedData != null || fetchedData != undefined
+        const hasFoundParentDiv = parentDiv != null || parentDiv != undefined
+        if (hasFoundData) {
+            if (hasFoundParentDiv) {
+                for (let data of fetchedData) {
+                    let figure = parentDiv.appendChild(document.createElement("figure"))
+                    figure.dataset.id = data.id
+                    figure.dataset.name = data.title
+                    figure.dataset.categoryId = data.categoryId
+
+                    let projectModalContent = figure.appendChild(document.createElement("div"))
+                    projectModalContent.setAttribute("class", "project-grid-modal-image")
+
+                    let figureImg = projectModalContent.appendChild(document.createElement("img"))
+                    figureImg.setAttribute("src", data.imageUrl)
+                    figureImg.setAttribute("alt", data.title)
+
+                    let deleteProjectButton = projectModalContent.appendChild(document.createElement("button"))
+                    deleteProjectButton.setAttribute("class", "delete-project-button")
+                    deleteProjectButton.dataset.projectId = data.id
+                    deleteProjectButton.innerHTML = '<i class="fa-solid fa-trash-can fa-sm"></i>'
+                }
+            } else {
+                throw new Error('Element cant be found')
+            }
+        } else {
+            throw new Error('Error when retrieving Data')
+        }
+
+    } catch (error) {
+        console.error(error.message)
+    }
+}
