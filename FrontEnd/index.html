@@ -48,8 +48,7 @@
 			<div class="project-title-content">
 				<h2 class="projects-title">Mes projets</h2>
 			</div>
-			<aside id="edit-projects-modal" class="projects-modal" aria-hidden="true"
-				aria-labelledby="projects-modal-gallery-title" role="modal" style="display: none;">
+			<dialog id="edit-projects-modal" class="projects-modal" aria-labelledby="projects-modal-gallery-title">
 				<div class="projects-modal-wrapper modal-stop-propagation">
 					<div class="modal-navigation-buttons">
 						<button class="close-modal-button"><i class="fa-solid fa-x fa-lg"></i></button>
@@ -59,18 +58,16 @@
 						<div class="projects-photo-grid">
 						</div>
 					</div>
-					<button id="add-project-button">Ajouter une photo</button>
+					<a href="#add-projects-modal" class="open-modal-link" id="add-project-link">Ajouter une photo</a>
 				</div>
-			</aside>
-			<aside id="add-projects-modal" class="projects-modal" aria-hidden="true"
-				aria-labelledby="add-projects-modal-title" role="modal">
+			</dialog>
+
+			<dialog id="add-projects-modal" class="projects-modal" aria-labelledby="add-projects-modal-title">
 				<div class="projects-modal-wrapper modal-stop-propagation">
 					<div class="modal-navigation-buttons">
 						<button class="previous-modal-button"><i class="fa-solid fa-arrow-left fa-lg"></i></button>
 						<button class="close-modal-button"><i class="fa-solid fa-x fa-lg"></i></button>
 					</div>
-
-
 					<h2 id="add-projects-modal-title" class="modal-main-title">Ajout photo</h2>
 					<div class="add-projects-modal-form">
 						<form method="post">
@@ -94,11 +91,9 @@
 						</form>
 					</div>
 					<button id="add-project-button">Valider</button>
-
 				</div>
+			</dialog>
 
-
-			</aside>
 			<div class="categories-buttons">
 				<button class="work-category-button" id="0" data-id="0" autofocus>Tous</button>
 			</div>
@@ -136,6 +131,8 @@
 	<script src="./scripts/actions/displayCategoriesButtons.js"></script>
 	<script src="./scripts/actions/displayWorks.js"></script>
 	<script src="./scripts/actions/focusInModal.js"></script>
+	<script src="./scripts/lib/getFocusableElements.js"></script>
+	<script src="./scripts/lib/getCurrentModal.js"></script>
 	<script src="./scripts/actions/displayModal.js"></script>
 	<script src="./scripts/actions/closeModal.js"></script>
 	<script src="./scripts/app.js"></script>

@@ -1,13 +1,31 @@
-function displayModal(e) {
+function displayModal(e, closeModalWindowButtons) {
     e.preventDefault()
-    modal = document.querySelector(e.target.getAttribute("href"))
-    focusableElements = Array.from(modal.querySelectorAll(focusableSelector))
-    previouslyFocusedElement = document.querySelector(":focus")
-    modal.style.display = null
-    focusableElements[0].focus()
-    modal.removeAttribute("aria-hidden")
-    modal.setAttribute("aria-modal", "true")
-    modal.addEventListener("click", closeModal)
-    modal.querySelector(".close-modal-button").addEventListener("click", closeModal)
-    modal.querySelector(".modal-stop-propagation").addEventListener("click", stopPropagation)
+    if (document.querySelector('.projects-modal').attributes.open) {
+        let previousModal = document.querySelector('.projects-modal')
+        previousModal.close()
+    }
+    const modalWindow = document.querySelector(e.target.getAttribute("href"))
+
+    let i = 0
+
+    modalWindow.setAttribute("autofocus", true)
+    modalWindow.focus()
+
+    modalWindow.showModal()
+    modalWindow.children[0].focus()
+    modalWindow.addEventListener('click', () => {
+        modalWindow.close()
+    })
+
+    modalWindow.querySelector('.modal-stop-propagation').addEventListener('click', stopPropagation)
+    focusableElements = getFocusableElements(modalWindow)
+    console.log(focusableElements)
+
+    closeModalWindowButtons.forEach(closeModalWindowButton => {
+
+        i++
+        closeModalWindowButton.setAttribute("id", `modal-window-${i}`)
+        closeModalWindowButton.addEventListener('click', () => { modalWindow.close() })
+    })
+
 }

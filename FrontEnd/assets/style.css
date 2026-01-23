@@ -439,16 +439,12 @@ footer nav ul {
 }
 
 
-.projects-modal {
-	position: fixed;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background: rgba(0, 0, 0, 0.8);
+dialog {
+	border: none;
+}
+
+::backdrop {
+	background-color: rgba(0, 0, 0, 0.80);
 }
 
 .projects-modal-wrapper {
@@ -463,6 +459,7 @@ footer nav ul {
 	max-height: calc(90vh - 20px);
 	padding: 20px;
 	background-color: #FFF;
+	border-radius: 20px;
 }
 
 
@@ -516,6 +513,20 @@ footer nav ul {
 	border-radius: 60px;
 	border: none;
 	padding: 1em;
+}
+
+#add-project-link {
+	font-family: 'Syne';
+	font-weight: 700;
+	color: white;
+	background-color: var(--titles-and-buttons-color);
+	margin: 2em auto;
+	width: 180px;
+	text-align: center;
+	border-radius: 60px;
+	border: none;
+	padding: 1em;
+	text-decoration: none;
 }
 
 .projects-photo-grid {

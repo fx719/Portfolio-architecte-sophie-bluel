@@ -5,8 +5,11 @@ const header = document.querySelector("header")
 const projectsTitle = document.querySelector(".projects-title")
 const grid = document.querySelector(".projects-photo-grid")
 const uploadedProjectCategories = document.getElementById("uploaded-project-categories")
+const modalWindows = document.querySelectorAll("dialog")
+
+let currentModal = null
 //Uses those selectors to help maintain the focus in the modal-windows
-const focusableSelector = "button, a , input, texarea"
+
 let focusableElements = []
 let previouslyFocusedElement = null
 
@@ -56,24 +59,27 @@ if (isAuthentified) {
 
 
     //Displays modal-window 
-    let modal = null
-
-    const editFormLink = document.getElementById('edit-form-link')
+    //let currentModal = null
+    const openModalLinks = document.querySelectorAll('.open-modal-link')
     displayWorksInModalGallery(grid, works)
 
-    editFormLink.addEventListener("click", displayModal)
+
+    const closeModalButtons = document.querySelectorAll('.close-modal-button')
+
+    openModalLinks.forEach(openModalLink => openModalLink.addEventListener('click', (e) => {
+        displayModal(e, closeModalButtons)
+    }))
+
 
     window.addEventListener("keydown", (e) => {
-        //Closes modal with "Esc" or "Escape" keydown event
-        if (e.key === "Escape" || e.key === "Esc") {
-            closeModal(e)
-        }
         //Makes sure the focus doesn't go out of the modal-window
-        if ((e.key === 'Tab') && (document.querySelector(".projects-modal").attributes.style.value !== "display: none;")) {
-
-            focusInModal(e)
+        if ((e.key === 'Tab') && (document.querySelector(".projects-modal").attributes.open)) {
+            let currentModal = getCurrentModal()
+            focusInModal(e, currentModal)
         }
     })
+
+
 
     //Event listener to logout the logged-in user.
     authLink.addEventListener("click", (e) => {
