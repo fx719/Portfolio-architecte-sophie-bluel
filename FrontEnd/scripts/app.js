@@ -59,7 +59,7 @@ if (isAuthentified) {
 
 
     //Displays modal-window 
-    //let currentModal = null
+    let currentModal = null
     const openModalLinks = document.querySelectorAll('.open-modal-link')
     displayWorksInModalGallery(grid, works)
 
@@ -70,13 +70,17 @@ if (isAuthentified) {
         displayModal(e, closeModalButtons)
     }))
 
-
-    window.addEventListener("keydown", (e) => {
-        //Makes sure the focus doesn't go out of the modal-window
-        if ((e.key === 'Tab') && (document.querySelector(".projects-modal").attributes.open)) {
-            let currentModal = getCurrentModal()
-            focusInModal(e, currentModal)
-        }
+    modalWindows.forEach(modalWindow => {
+        //if a modal window is opened, trap the tab-focus in it.
+        modalWindow.addEventListener('toggle', (e) => {
+            if (e.newState === "open") {
+                modalWindow.addEventListener('keydown', (e) => {
+                    if (e.key === 'Tab') {
+                        focusInModal(e, modalWindow)
+                    }
+                })
+            }
+        })
     })
 
 

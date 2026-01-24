@@ -1,10 +1,11 @@
 function displayModal(e, closeModalWindowButtons) {
     e.preventDefault()
+    let modalWindow = document.querySelector(e.target.getAttribute("href"))
     if (document.querySelector('.projects-modal').attributes.open) {
         let previousModal = document.querySelector('.projects-modal')
         previousModal.close()
+
     }
-    const modalWindow = document.querySelector(e.target.getAttribute("href"))
 
     let i = 0
 
@@ -19,7 +20,6 @@ function displayModal(e, closeModalWindowButtons) {
 
     modalWindow.querySelector('.modal-stop-propagation').addEventListener('click', stopPropagation)
     focusableElements = getFocusableElements(modalWindow)
-    console.log(focusableElements)
 
     closeModalWindowButtons.forEach(closeModalWindowButton => {
 
