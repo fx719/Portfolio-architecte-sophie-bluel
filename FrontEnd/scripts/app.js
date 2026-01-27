@@ -6,6 +6,7 @@ const projectsTitle = document.querySelector(".projects-title")
 const grid = document.querySelector(".projects-photo-grid")
 const uploadedProjectCategories = document.getElementById("uploaded-project-categories")
 const modalWindows = document.querySelectorAll("dialog")
+const previousModalButton = document.getElementById('button-go-edit-projects-modal')
 
 let currentModal = null
 //Uses those selectors to help maintain the focus in the modal-windows
@@ -67,12 +68,13 @@ if (isAuthentified) {
     const closeModalButtons = document.querySelectorAll('.close-modal-button')
 
     openModalLinks.forEach(openModalLink => openModalLink.addEventListener('click', (e) => {
-        displayModal(e, closeModalButtons)
+        displayModal(e, closeModalButtons, previousModalButton)
     }))
 
     modalWindows.forEach(modalWindow => {
         //if a modal window is opened, trap the tab-focus in it.
         modalWindow.addEventListener('toggle', (e) => {
+            console.log(e)
             if (e.newState === "open") {
                 modalWindow.addEventListener('keydown', (e) => {
                     if (e.key === 'Tab') {
@@ -80,7 +82,7 @@ if (isAuthentified) {
                     }
                 })
             }
-        })
+        }, { once: true })
     })
 
 

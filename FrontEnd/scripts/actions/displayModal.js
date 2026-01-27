@@ -1,4 +1,4 @@
-function displayModal(e, closeModalWindowButtons) {
+function displayModal(e, closeModalWindowButtons, goBackButton) {
     e.preventDefault()
     let modalWindow = document.querySelector(e.target.getAttribute("href"))
     if (document.querySelector('.projects-modal').attributes.open) {
@@ -7,7 +7,7 @@ function displayModal(e, closeModalWindowButtons) {
 
     }
 
-    let i = 0
+    let modalWindowNumber = 0
 
     modalWindow.setAttribute("autofocus", true)
     modalWindow.focus()
@@ -23,9 +23,15 @@ function displayModal(e, closeModalWindowButtons) {
 
     closeModalWindowButtons.forEach(closeModalWindowButton => {
 
-        i++
-        closeModalWindowButton.setAttribute("id", `modal-window-${i}`)
+        modalWindowNumber++
+        closeModalWindowButton.setAttribute("id", `modal-window-${modalWindowNumber}`)
         closeModalWindowButton.addEventListener('click', () => { modalWindow.close() })
     })
+
+    if (goBackButton) {
+        goBackButton.addEventListener('click', (e) => {
+            console.log(e.target)
+        })
+    }
 
 }
