@@ -2,7 +2,6 @@ function focusInModal(e, modal) {
 
     e.preventDefault()
     let index = focusableElements.findIndex(f => f === modal.querySelector(":focus"))
-    console.log(focusableElements)
     if (e.shiftKey === true) {
         index--
     } else {
