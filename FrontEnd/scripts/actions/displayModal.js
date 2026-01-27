@@ -25,12 +25,18 @@ function displayModal(e, closeModalWindowButtons, goBackButton) {
 
         modalWindowNumber++
         closeModalWindowButton.setAttribute("id", `modal-window-${modalWindowNumber}`)
-        closeModalWindowButton.addEventListener('click', () => { modalWindow.close() })
+        closeModalWindowButton.addEventListener('click', () => {
+            modalWindow.close()
+        })
     })
 
     if (goBackButton) {
         goBackButton.addEventListener('click', (e) => {
-            console.log(e.target)
+            let wantedModalId = e.currentTarget.id.slice(10)
+            let previousModal = document.getElementById(wantedModalId)
+            modalWindow.close()
+            previousModal.showModal()
+            focusableElements = getFocusableElements(previousModal)
         })
     }
 

@@ -74,7 +74,7 @@ if (isAuthentified) {
     modalWindows.forEach(modalWindow => {
         //if a modal window is opened, trap the tab-focus in it.
         modalWindow.addEventListener('toggle', (e) => {
-            console.log(e)
+
             if (e.newState === "open") {
                 modalWindow.addEventListener('keydown', (e) => {
                     if (e.key === 'Tab') {
@@ -82,6 +82,7 @@ if (isAuthentified) {
                     }
                 })
             }
+
         }, { once: true })
     })
 
