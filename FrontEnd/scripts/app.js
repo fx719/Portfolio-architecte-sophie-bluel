@@ -9,11 +9,10 @@ const modalWindows = document.querySelectorAll("dialog")
 const previousModalButton = document.getElementById('button-go-edit-projects-modal')
 const modalNavigationButtonsDiv = document.querySelectorAll('.modal-navigation-buttons')
 
-let currentModal = null
-//Uses those selectors to help maintain the focus in the modal-windows
+
+//Uses this array  to help maintain the focus in the modal-windows
 
 let focusableElements = []
-let previouslyFocusedElement = null
 
 //Contacts the API to get the works'data, then displays them.
 let works = []
@@ -44,6 +43,7 @@ getDataFromAPI("http://127.0.0.1:5678/api/categories")
 
 if (isAuthentified) {
 
+    //Displays logged-in user interface, hides projects' filter buttons and adds the link used to display projects' edit forms in modal windows.
     authLink.setAttribute("href", "#")
     authLink.innerText = "logout"
     addEditModBanner(header)
@@ -61,7 +61,6 @@ if (isAuthentified) {
 
 
     //Displays modal-window 
-    let currentModal = null
     const openModalLinks = document.querySelectorAll('.open-modal-link')
     displayWorksInModalGallery(grid, works)
 
@@ -72,8 +71,8 @@ if (isAuthentified) {
         displayModal(e, closeModalButtons, previousModalButton)
     }))
 
+    //If a modal window is opened, traps the tab-focus in it.
     modalWindows.forEach(modalWindow => {
-        //if a modal window is opened, trap the tab-focus in it.
         modalWindow.addEventListener('toggle', (e) => {
 
             if (e.newState === "open") {
@@ -87,6 +86,7 @@ if (isAuthentified) {
         }, { once: true })
     })
 
+    //Adjusts the display of the modal-windows' navigation buttons if more than one is displayed
     modalNavigationButtonsDiv.forEach(modalNavigationButtons => {
         if (modalNavigationButtons.children.length === 2) {
             modalNavigationButtons.setAttribute("style", "justify-content: space-between;")

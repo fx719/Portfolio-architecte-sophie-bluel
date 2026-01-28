@@ -1,3 +1,8 @@
+/**
+ * Adds the edit form link next to the gallery title.
+ * This links opens the first modal window, where the logged-in user will be able to delete projects.
+ * @param {HTMLElement} elementBeforeTheLink 
+ */
 function addEditFormLink(elementBeforeTheLink) {
     const editFormLinkContent = document.createElement("div")
     editFormLinkContent.setAttribute("class", "edit-form-link-content")

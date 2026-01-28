@@ -1,3 +1,9 @@
+/**
+ * Traps the focus in the modal-windows, preventing the keyboard navigation to 
+ * put the focus outside of the modal-windows.
+ * @param {Event} e 
+ * @param {HTMLDialogElement} modal 
+ */
 function focusInModal(e, modal) {
 
     e.preventDefault()

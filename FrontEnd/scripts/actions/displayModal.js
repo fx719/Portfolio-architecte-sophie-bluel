@@ -1,3 +1,10 @@
+/**
+ * Displays the modal-windows, wich are used in this project to delete or add projects from / to the gallery.
+ * If the first modal-window is already displayed ('open'), the second modal-window's display closes the first one.
+ * @param {Event} e 
+ * @param {HTMLCollection} closeModalWindowButtons 
+ * @param {HTMLButtonElement} goBackButton 
+ */
 function displayModal(e, closeModalWindowButtons, goBackButton) {
     e.preventDefault()
     let modalWindow = document.querySelector(e.target.getAttribute("href"))
