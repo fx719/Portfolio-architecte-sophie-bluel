@@ -478,7 +478,7 @@ dialog {
 .modal-navigation-buttons {
 	display: flex;
 	flex-flow: row nowrap;
-	justify-content: space-between;
+	justify-content: flex-end;
 	width: 100%;
 	max-width: 100%;
 }

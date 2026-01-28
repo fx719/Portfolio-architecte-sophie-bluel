@@ -7,6 +7,7 @@ const grid = document.querySelector(".projects-photo-grid")
 const uploadedProjectCategories = document.getElementById("uploaded-project-categories")
 const modalWindows = document.querySelectorAll("dialog")
 const previousModalButton = document.getElementById('button-go-edit-projects-modal')
+const modalNavigationButtonsDiv = document.querySelectorAll('.modal-navigation-buttons')
 
 let currentModal = null
 //Uses those selectors to help maintain the focus in the modal-windows
@@ -86,7 +87,11 @@ if (isAuthentified) {
         }, { once: true })
     })
 
-
+    modalNavigationButtonsDiv.forEach(modalNavigationButtons => {
+        if (modalNavigationButtons.children.length === 2) {
+            modalNavigationButtons.setAttribute("style", "justify-content: space-between;")
+        }
+    })
 
     //Event listener to logout the logged-in user.
     authLink.addEventListener("click", (e) => {
