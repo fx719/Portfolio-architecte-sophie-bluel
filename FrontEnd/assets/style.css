@@ -441,6 +441,7 @@ footer nav ul {
 
 dialog {
 	border: none;
+	border-radius: 10px;
 }
 
 ::backdrop {
@@ -459,7 +460,6 @@ dialog {
 	max-height: calc(90vh - 20px);
 	padding: 20px;
 	background-color: #FFF;
-	border-radius: 20px;
 }
 
 
