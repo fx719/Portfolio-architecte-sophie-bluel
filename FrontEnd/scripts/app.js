@@ -79,7 +79,7 @@ if (isAuthentified) {
 
 
 
-    //If a modal window is opened, traps the tab-focus in it.
+    //If a modal window is opened, traps the focus in it.
     modalWindows.forEach(modalWindow => {
         modalWindow.addEventListener('toggle', (e) => {
 
@@ -100,6 +100,10 @@ if (isAuthentified) {
             modalNavigationButtons.setAttribute("style", "justify-content: space-between;")
         }
     })
+
+
+
+
 
     //Event listener to logout the logged-in user.
     authLink.addEventListener("click", (e) => {
