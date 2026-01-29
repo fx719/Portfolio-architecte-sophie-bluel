@@ -604,19 +604,27 @@ dialog {
 	gap: 0.5em;
 }
 
-.add-projects-modal-form input[type="file"] {
-	display: none;
+.upload-file-input:focus-within {
+	background-color: #c4e2f3;
 }
 
-#add-photo-button {
+.add-projects-modal-form input[type="file"] {
+	opacity: 0;
+	height: 0;
+	width: 0;
+}
+
+
+
+
+#add-photo-label-button {
 	background-color: #CBD6DC;
 	border-radius: 20px;
 	border: none;
-	height: 36px;
-	max-width: 41%;
-	width: 41%;
 	color: #306685;
 	font-weight: bold;
+	text-align: center;
+	padding: 0.8em 2em 0.8em 2em;
 }
 
 .upload-file-input img {
