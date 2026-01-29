@@ -21,6 +21,10 @@ getDataFromAPI("http://127.0.0.1:5678/api/works")
         works = data
         displayWorks(gallery, works)
         displayWorksInModalGallery(grid, works)
+        let deleteProjectButtons = document.querySelectorAll('.delete-project-button')
+        if (sessionStorage.getItem("token")) {
+            deleteProject(deleteProjectButtons)
+        }
     })
 
 
@@ -70,6 +74,10 @@ if (isAuthentified) {
     openModalLinks.forEach(openModalLink => openModalLink.addEventListener('click', (e) => {
         displayModal(e, closeModalButtons, previousModalButton)
     }))
+
+
+
+
 
     //If a modal window is opened, traps the tab-focus in it.
     modalWindows.forEach(modalWindow => {
