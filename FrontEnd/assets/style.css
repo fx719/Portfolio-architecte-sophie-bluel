@@ -502,18 +502,7 @@ dialog {
 	margin-bottom: 1.5rem;
 }
 
-#add-project-button {
-	font-family: 'Syne';
-	font-weight: 700;
-	color: white;
-	background-color: var(--titles-and-buttons-color);
-	margin: 2em auto;
-	width: 180px;
-	text-align: center;
-	border-radius: 60px;
-	border: none;
-	padding: 1em;
-}
+
 
 #add-project-link {
 	font-family: 'Syne';
@@ -589,7 +578,6 @@ dialog {
 	max-width: 80%;
 	width: 100%;
 	gap: 1em;
-	border-bottom: 2px solid #B3B3B3;
 	padding-bottom: 1em;
 }
 
@@ -602,6 +590,8 @@ dialog {
 	justify-content: center;
 	align-items: center;
 	gap: 0.5em;
+	padding-top: 1em;
+	padding-bottom: 1em;
 }
 
 .upload-file-input:focus-within {
@@ -661,6 +651,8 @@ dialog {
 	width: 100%;
 	max-width: 100%;
 	gap: 0.7em;
+	border-bottom: 2px solid #B3B3B3;
+	padding-bottom: 2em;
 }
 
 .uploaded-project-category-content select {
@@ -669,4 +661,17 @@ dialog {
 	height: 51px;
 	border: none;
 	box-shadow: var(--inputs-shadowing);
+}
+
+#add-project-button {
+	font-family: 'Syne';
+	font-weight: 700;
+	color: white;
+	background-color: gray;
+	margin: 2em auto;
+	width: 180px;
+	text-align: center;
+	border-radius: 60px;
+	border: none;
+	padding: 0.5em 1em 0.5em 1em;
 }

@@ -78,7 +78,6 @@ if (isAuthentified) {
 
 
 
-
     //If a modal window is opened, traps the focus in it.
     modalWindows.forEach(modalWindow => {
         modalWindow.addEventListener('toggle', (e) => {
@@ -94,6 +93,7 @@ if (isAuthentified) {
         }, { once: true })
     })
 
+
     //Adjusts the display of the modal-windows' navigation buttons if more than one is displayed
     modalNavigationButtonsDiv.forEach(modalNavigationButtons => {
         if (modalNavigationButtons.children.length === 2) {
@@ -102,7 +102,35 @@ if (isAuthentified) {
     })
 
 
+    //Handles the project upload inputs
+    const addProjectButton = document.getElementById('add-project-button')
+    const uploadProjectForm = document.querySelector('.add-projects-modal-form form')
+    const uploadProjectFormWithoutButton = document.querySelectorAll('.add-projects-modal-form form input, select')
 
+    uploadProjectFormWithoutButton.forEach(formElement => {
+        formElement.addEventListener('input', (e) => {
+
+            let filledForm = Array.from(uploadProjectFormWithoutButton).filter(formElement => formElement.value !== "")
+
+            if (filledForm.length === 3) {
+                addProjectButton.removeAttribute("disabled")
+                addProjectButton.setAttribute("style", "background-color: #1D6154;")
+            }
+
+            if (filledForm.length < 3) {
+                addProjectButton.setAttribute("disabled", true)
+                addProjectButton.setAttribute("style", "background-color: gray;")
+            }
+        })
+
+    })
+
+    // Array.from(uploadProjectForm.elements).forEach(
+    //     formElement => console.log(formElement)
+    // )
+    //console.log(uploadProjectForm.elements)
+    // let uploadProjectFormData = new FormData(uploadProjectForm, addProjectButton)
+    // uploadProjectFormData.forEach(data => console.log(data))
 
 
     //Event listener to logout the logged-in user.
