@@ -71,10 +71,11 @@
 					</div>
 					<h2 id="add-projects-modal-title" class="modal-main-title">Ajout photo</h2>
 					<div class="add-projects-modal-form">
-						<form method="post">
+						<form method="post" enctype="multipart/form-data">
 
 							<div class="upload-file-input">
-								<img src="./assets/icons/Vector.png" alt="upload image icone">
+								<label for="photo-uploader-input"><img src="./assets/icons/Vector.png"
+										class="uploaded-picture-preview" alt="aperçu image uploadée"></label>
 								<input type="file" class="photo-uploader-button" id="photo-uploader-input"
 									name="photo-uploader-input">
 								<label for="photo-uploader-input" id="add-photo-label-button">+ Ajouter

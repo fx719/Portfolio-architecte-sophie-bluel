@@ -106,7 +106,12 @@ if (isAuthentified) {
     const addProjectButton = document.getElementById('add-project-button')
     const uploadProjectForm = document.querySelector('.add-projects-modal-form form')
     const uploadProjectFormWithoutButton = document.querySelectorAll('.add-projects-modal-form form input, select')
+    const fileInputDiv = document.querySelector('.upload-file-input')
+    const fileInput = document.getElementById('photo-uploader-input')
+    const uploadedPicturePreview = document.querySelector('.uploaded-picture-preview')
 
+
+    //Making sure all fields are complete before enabling the submit button
     uploadProjectFormWithoutButton.forEach(formElement => {
         formElement.addEventListener('input', (e) => {
 
@@ -125,12 +130,46 @@ if (isAuthentified) {
 
     })
 
-    // Array.from(uploadProjectForm.elements).forEach(
-    //     formElement => console.log(formElement)
-    // )
-    //console.log(uploadProjectForm.elements)
-    // let uploadProjectFormData = new FormData(uploadProjectForm, addProjectButton)
-    // uploadProjectFormData.forEach(data => console.log(data))
+    //Preview the user's sent picture
+    fileInput.addEventListener('change', (e) => {
+
+        const uploadedFile = fileInput.files[0]
+
+        const reader = new FileReader()
+        reader.readAsDataURL(uploadedFile)
+        reader.addEventListener('loadend', (loadEvent) => {
+
+            uploadedPicturePreview.src = reader.result
+            uploadedPicturePreview.setAttribute("style", "width : 100%; height: 149px; max-width: 100%;")
+
+            for (let i = 1; i < fileInput.labels.length; i++) {
+
+                fileInput.labels[i].setAttribute("style", "display: none;")
+
+            }
+            fileInputDiv.setAttribute("style", "padding-top: 0; padding-bottom: 0; gap: 0;")
+
+        })
+    })
+
+
+    //Access form data
+    uploadProjectForm.addEventListener("submit", (e) => {
+        e.preventDefault()
+        new FormData(uploadProjectForm)
+
+    })
+
+    uploadProjectForm.addEventListener("formdata", (e) => {
+        const data = e.formData
+        for (let value of data.values()) {
+            console.log(value)
+        }
+    })
+
+
+
+
 
 
     //Event listener to logout the logged-in user.
