@@ -135,21 +135,36 @@ if (isAuthentified) {
 
             const uploadedFile = fileInput.files[0]
             const reader = new FileReader()
-            //note du 31/01 : typeError quand on on sélectionne une image, puis qu'on relance la sélection de fichier avant d'annuler.
-            // + factoriser ajout dynamique porjet dom en dessous en priorité (sûrement via les fonctions displayWorks etc.)
-            reader.readAsDataURL(uploadedFile)
-            reader.addEventListener('loadend', (loadEvent) => {
-                uploadedPicturePreview.src = reader.result
-                uploadedPicturePreview.setAttribute("style", "width : 100%; height: 149px; max-width: 100%;")
-
+            console.log(e)
+            if (e.target.value === "") {
+                uploadedPicturePreview.src = "./assets/icons/Vector.png"
+                uploadedPicturePreview.removeAttribute("style")
+                fileInputDiv.removeAttribute("style")
                 for (let i = 1; i < fileInput.labels.length; i++) {
 
-                    fileInput.labels[i].setAttribute("style", "display: none;")
+                    fileInput.labels[i].removeAttribute("style")
 
                 }
-                fileInputDiv.setAttribute("style", "padding-top: 0; padding-bottom: 0; gap: 0;")
-            })
 
+            }
+            //note du 31/01 : factoriser ajout dynamique porjet dom en dessous en priorité (sûrement via les fonctions displayWorks etc.)
+
+            if (uploadedFile === undefined) {
+
+            } else {
+                reader.readAsDataURL(uploadedFile)
+                reader.addEventListener('loadend', (loadEvent) => {
+                    uploadedPicturePreview.src = reader.result
+                    uploadedPicturePreview.setAttribute("style", "width : 100%; height: 149px; max-width: 100%;")
+
+                    for (let i = 1; i < fileInput.labels.length; i++) {
+
+                        fileInput.labels[i].setAttribute("style", "display: none;")
+
+                    }
+                    fileInputDiv.setAttribute("style", "padding-top: 0; padding-bottom: 0; gap: 0;")
+                })
+            }
         } catch (error) {
             console.error(error)
         }
@@ -206,6 +221,8 @@ if (isAuthentified) {
                                 deleteProjectButton.innerHTML = '<i class="fa-solid fa-trash-can fa-sm"></i>'
                                 let deleteProjectButtons = document.querySelectorAll('.delete-project-button')
                                 deleteProject(deleteProjectButtons)
+                                modalWindows[1].close()
+                                modalWindows[0].showModal()
                             })
 
                     } else {
