@@ -20,7 +20,8 @@ authSubmission.addEventListener('click', (e) => {
             window.location = "./../index.html"
         })
         .catch(() => {
-            authForm.appendChild(flashMessageErrorAuth)
+            // authForm.appendChild(flashMessageErrorAuth)
+            flashError('authError', authForm)
         })
 })
 

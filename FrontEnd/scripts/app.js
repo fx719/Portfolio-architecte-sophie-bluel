@@ -118,12 +118,10 @@ if (isAuthentified) {
             let filledForm = Array.from(uploadProjectFormWithoutButton).filter(formElement => formElement.value !== "")
 
             if (filledForm.length === 3) {
-                addProjectButton.removeAttribute("disabled")
                 addProjectButton.setAttribute("style", "background-color: #1D6154;")
             }
 
             if (filledForm.length < 3) {
-                addProjectButton.setAttribute("disabled", true)
                 addProjectButton.setAttribute("style", "background-color: gray;")
             }
         })
@@ -152,25 +150,43 @@ if (isAuthentified) {
         })
     })
 
-
+    console.log(fileInput)
     //Access form data
     uploadProjectForm.addEventListener("submit", (e) => {
-        e.preventDefault()
-        new FormData(uploadProjectForm)
 
-    })
+        try {
 
-    uploadProjectForm.addEventListener("formdata", (e) => {
-        const data = e.formData
-        for (let value of data.values()) {
-            console.log(value)
+            e.preventDefault()
+            const textRegEx = new RegExp("[a-zéàâçèêô0-9-(): ]{4,}", "gmi")
+            const data = new FormData()
+            const uploadedFile = fileInput.files[0]
+
+            if (fileInput.value !== "") {
+                data.append("image", uploadedFile)
+                if (textRegEx.test(uploadProjectForm[1].value)) {
+                    data.append("title", uploadProjectForm[1].value)
+                    if (uploadProjectForm[2].value !== "") {
+                        data.append("category", uploadProjectForm[2].value)
+                        sendDataToAPI('http://localhost:5678/api/works', data)
+
+                    } else {
+                        flashError('uploadCategoryError', uploadProjectForm)
+                        throw new Error('Merci de sélectionner une catégorie')
+                    }
+                } else {
+                    flashError('uploadTitleError', uploadProjectForm)
+                    throw new Error("Merci d'écrire un titre complet")
+                }
+            } else {
+                flashError('uploadFileError', uploadProjectForm)
+                throw new Error('Merci de fournir une image au formulaire')
+            }
+
+        } catch (error) {
+            console.error(error)
         }
+
     })
-
-
-
-
-
 
     //Event listener to logout the logged-in user.
     authLink.addEventListener("click", (e) => {

@@ -76,25 +76,24 @@
 							<div class="upload-file-input">
 								<label for="photo-uploader-input"><img src="./assets/icons/Vector.png"
 										class="uploaded-picture-preview" alt="aperçu image uploadée"></label>
-								<input type="file" class="photo-uploader-button" id="photo-uploader-input"
-									name="photo-uploader-input">
+								<input type="file" class="photo-uploader-button" id="photo-uploader-input" name="image">
 								<label for="photo-uploader-input" id="add-photo-label-button">+ Ajouter
 									photo</label>
 								<label for="photo-uploader-input">jpg, png : 4mo max</label>
 							</div>
 							<div class="uploaded-project-title-content">
 								<label for="uploaded-project-title">Titre</label>
-								<input type="text" name="uploaded-project-title" id="uploaded-project-title">
+								<input type="text" name="title" id="uploaded-project-title">
 							</div>
 							<div class="uploaded-project-category-content">
 								<label for="uploaded-project-categories">Catégories</label>
-								<select name="uploaded-project-categories" id="uploaded-project-categories">
+								<select name="category" id="uploaded-project-categories">
 									<option value=""></option>
 								</select>
 							</div>
 
 
-							<button type="submit" id="add-project-button" disabled>Valider</button>
+							<button type="submit" id="add-project-button">Valider</button>
 						</form>
 					</div>
 
@@ -135,12 +134,14 @@
 	<script src="./scripts/actions/logout.js"></script>
 	<script src="./scripts/lib/addEditModBanner.js"></script>
 	<script src="./scripts/lib/addEditFormLink.js"></script>
+	<script src="./scripts/lib/flashMessages.js"></script>
 	<script src="./scripts/actions/displayCategoriesButtons.js"></script>
 	<script src="./scripts/actions/displayWorks.js"></script>
 	<script src="./scripts/actions/focusInModal.js"></script>
 	<script src="./scripts/lib/getFocusableElements.js"></script>
 	<script src="./scripts/actions/displayModal.js"></script>
 	<script src="./scripts/actions/deleteProject.js"></script>
+	<script src="./scripts/lib/sendDataToAPI.js"></script>
 	<script src="./scripts/app.js"></script>
 </body>
 
