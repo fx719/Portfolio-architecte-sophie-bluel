@@ -271,7 +271,11 @@ li a:focus {
 }
 
 .gallery img {
+	object-fit: cover;
+	max-height: 100%;
 	width: 100%;
+	max-width: 100%;
+	aspect-ratio: 1/1.34;
 
 }
 
@@ -517,6 +521,7 @@ dialog {
 	padding: 1em;
 	text-decoration: none;
 }
+
 
 .projects-photo-grid {
 	display: grid;

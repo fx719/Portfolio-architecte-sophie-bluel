@@ -131,26 +131,32 @@ if (isAuthentified) {
     //Preview the user's sent picture
     fileInput.addEventListener('change', (e) => {
 
-        const uploadedFile = fileInput.files[0]
+        try {
 
-        const reader = new FileReader()
-        reader.readAsDataURL(uploadedFile)
-        reader.addEventListener('loadend', (loadEvent) => {
+            const uploadedFile = fileInput.files[0]
+            const reader = new FileReader()
+            //note du 31/01 : typeError quand on on sélectionne une image, puis qu'on relance la sélection de fichier avant d'annuler.
+            // + factoriser ajout dynamique porjet dom en dessous en priorité (sûrement via les fonctions displayWorks etc.)
+            reader.readAsDataURL(uploadedFile)
+            reader.addEventListener('loadend', (loadEvent) => {
+                uploadedPicturePreview.src = reader.result
+                uploadedPicturePreview.setAttribute("style", "width : 100%; height: 149px; max-width: 100%;")
 
-            uploadedPicturePreview.src = reader.result
-            uploadedPicturePreview.setAttribute("style", "width : 100%; height: 149px; max-width: 100%;")
+                for (let i = 1; i < fileInput.labels.length; i++) {
 
-            for (let i = 1; i < fileInput.labels.length; i++) {
+                    fileInput.labels[i].setAttribute("style", "display: none;")
 
-                fileInput.labels[i].setAttribute("style", "display: none;")
+                }
+                fileInputDiv.setAttribute("style", "padding-top: 0; padding-bottom: 0; gap: 0;")
+            })
 
-            }
-            fileInputDiv.setAttribute("style", "padding-top: 0; padding-bottom: 0; gap: 0;")
+        } catch (error) {
+            console.error(error)
+        }
 
-        })
     })
 
-    console.log(fileInput)
+
     //Access form data
     uploadProjectForm.addEventListener("submit", (e) => {
 
@@ -161,13 +167,46 @@ if (isAuthentified) {
             const data = new FormData()
             const uploadedFile = fileInput.files[0]
 
-            if (fileInput.value !== "") {
+            if (fileInput.value !== "" && uploadedFile.size < 4194304 && (uploadedFile.name.endsWith('jpg') || uploadedFile.name.endsWith('png'))) {
                 data.append("image", uploadedFile)
                 if (textRegEx.test(uploadProjectForm[1].value)) {
                     data.append("title", uploadProjectForm[1].value)
                     if (uploadProjectForm[2].value !== "") {
                         data.append("category", uploadProjectForm[2].value)
                         sendDataToAPI('http://localhost:5678/api/works', data)
+                            .then(r => {
+                                //Note du 31/01/26 à 16h15 : factoriser tout ça en priorité (sûrement via les fonctions displayWorks etc.)
+                                //Append project to portfolio gallery
+                                let figure = gallery.appendChild(document.createElement("figure"))
+                                figure.dataset.id = r.id
+                                figure.dataset.name = r.title
+                                figure.dataset.categoryId = r.categoryId
+                                let figureImg = figure.appendChild(document.createElement("img"))
+                                figureImg.setAttribute("src", r.imageUrl)
+                                figureImg.setAttribute("alt", r.title)
+                                let figureCaption = figure.appendChild(document.createElement("figcaption"))
+                                figureCaption.innerText = r.title
+
+                                //Append project to modal-window gallery
+                                let modalFigure = grid.appendChild(document.createElement("figure"))
+                                modalFigure.dataset.id = r.id
+                                modalFigure.dataset.name = r.title
+                                modalFigure.dataset.categoryId = r.categoryId
+
+                                let projectModalContent = modalFigure.appendChild(document.createElement("div"))
+                                projectModalContent.setAttribute("class", "project-grid-modal-image")
+
+                                let modalFigureImg = projectModalContent.appendChild(document.createElement("img"))
+                                modalFigureImg.setAttribute("src", r.imageUrl)
+                                modalFigureImg.setAttribute("alt", r.title)
+
+                                let deleteProjectButton = projectModalContent.appendChild(document.createElement("button"))
+                                deleteProjectButton.setAttribute("class", "delete-project-button")
+                                deleteProjectButton.dataset.projectId = r.id
+                                deleteProjectButton.innerHTML = '<i class="fa-solid fa-trash-can fa-sm"></i>'
+                                let deleteProjectButtons = document.querySelectorAll('.delete-project-button')
+                                deleteProject(deleteProjectButtons)
+                            })
 
                     } else {
                         flashError('uploadCategoryError', uploadProjectForm)

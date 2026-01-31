@@ -13,7 +13,7 @@ function flashError(errorType, errorElement) {
         flashMessage.setAttribute("class", "flash-message-error")
         const errorMessages = {
             authError: "Erreur dans l’identifiant ou le mot de passe",
-            uploadFileError: "Merci de fournir une image au formulaire",
+            uploadFileError: "Merci de fournir une image au formulaire, au format jpg ou png, et d'une taille inférieure à 4 MO",
             uploadTitleError: "Merci d'écrire un titre complet",
             uploadCategoryError: "Merci de sélectionner une catégorie"
         }
@@ -31,7 +31,7 @@ function flashError(errorType, errorElement) {
         }
 
         errorElement.appendChild(flashMessage)
-        setTimeout(() => { flashMessage.remove() }, 2000)
+        setTimeout(() => { flashMessage.remove() }, 4000)
 
     } catch (error) {
         console.error(error)
