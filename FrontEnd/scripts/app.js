@@ -68,6 +68,15 @@ if (isAuthentified) {
     const openModalLinks = document.querySelectorAll('.open-modal-link')
     displayWorksInModalGallery(grid, works)
 
+    //Project's upload form Elements
+    const addProjectButton = document.getElementById('add-project-button')
+    const uploadProjectForm = document.querySelector('.add-projects-modal-form form')
+    const uploadProjectFormWithoutButton = document.querySelectorAll('.add-projects-modal-form form input, select')
+    const fileInputDiv = document.querySelector('.upload-file-input')
+    const fileInput = document.getElementById('photo-uploader-input')
+    const uploadedPicturePreview = document.querySelector('.uploaded-picture-preview')
+    const neutralImgUrl = "./assets/icons/Vector.png"
+
 
     const closeModalButtons = document.querySelectorAll('.close-modal-button')
 
@@ -102,37 +111,15 @@ if (isAuthentified) {
     })
 
 
-    //Handles the project preview upload inputs
-    const addProjectButton = document.getElementById('add-project-button')
-    const uploadProjectForm = document.querySelector('.add-projects-modal-form form')
-    const uploadProjectFormWithoutButton = document.querySelectorAll('.add-projects-modal-form form input, select')
-    const fileInputDiv = document.querySelector('.upload-file-input')
-    const fileInput = document.getElementById('photo-uploader-input')
-    const uploadedPicturePreview = document.querySelector('.uploaded-picture-preview')
-    const neutralImgUrl = "./assets/icons/Vector.png"
+    //Project's upload section
 
     //Making sure all fields are complete before enabling the submit button
-    uploadProjectFormWithoutButton.forEach(formElement => {
-        formElement.addEventListener('input', (e) => {
-
-            let filledForm = Array.from(uploadProjectFormWithoutButton).filter(formElement => formElement.value !== "")
-
-            if (filledForm.length === 3) {
-                addProjectButton.setAttribute("style", "background-color: #1D6154;")
-            }
-
-            if (filledForm.length < 3) {
-                addProjectButton.setAttribute("style", "background-color: gray;")
-            }
-        })
-
-    })
+    colorButtonIfFormIsComplete(uploadProjectFormWithoutButton, addProjectButton, '#1D6154', 'gray')
 
     //Preview the user's sent picture
     fileInput.addEventListener('change', (e) => {
         previewUploadedPicture(e, fileInput, neutralImgUrl, uploadedPicturePreview, fileInputDiv)
     })
-
 
     //Upload form data
     uploadProjectForm.addEventListener("submit", (e) => {
