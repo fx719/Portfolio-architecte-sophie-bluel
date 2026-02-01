@@ -102,7 +102,7 @@ if (isAuthentified) {
     })
 
 
-    //Handles the project upload inputs
+    //Handles the project preview upload inputs
     const addProjectButton = document.getElementById('add-project-button')
     const uploadProjectForm = document.querySelector('.add-projects-modal-form form')
     const uploadProjectFormWithoutButton = document.querySelectorAll('.add-projects-modal-form form input, select')
@@ -134,49 +134,9 @@ if (isAuthentified) {
     })
 
 
-    //Access form data
+    //Upload form data
     uploadProjectForm.addEventListener("submit", (e) => {
-
-        try {
-
-            e.preventDefault()
-            const textRegEx = new RegExp("[a-zéàâçèêô0-9-(): ]{4,}", "gmi")
-            const data = new FormData()
-            const uploadedFile = fileInput.files[0]
-
-            if (fileInput.value !== "" && uploadedFile.size < 4194304 && (uploadedFile.name.endsWith('jpg') || uploadedFile.name.endsWith('png'))) {
-                data.append("image", uploadedFile)
-                if (textRegEx.test(uploadProjectForm[1].value)) {
-                    data.append("title", uploadProjectForm[1].value)
-                    if (uploadProjectForm[2].value !== "") {
-                        data.append("category", uploadProjectForm[2].value)
-                        sendDataToAPI('http://localhost:5678/api/works', data)
-                            .then(r => {
-                                console.log(typeof r)
-                                appendNewWorkToDOM(gallery, grid, r)
-                                let deleteProjectButtons = document.querySelectorAll('.delete-project-button')
-                                deleteProject(deleteProjectButtons)
-                                modalWindows[1].close()
-                                modalWindows[0].showModal()
-                            })
-
-                    } else {
-                        flashError('uploadCategoryError', uploadProjectForm)
-                        throw new Error('Merci de sélectionner une catégorie')
-                    }
-                } else {
-                    flashError('uploadTitleError', uploadProjectForm)
-                    throw new Error("Merci d'écrire un titre complet")
-                }
-            } else {
-                flashError('uploadFileError', uploadProjectForm)
-                throw new Error('Merci de fournir une image au formulaire')
-            }
-
-        } catch (error) {
-            console.error(error)
-        }
-
+        uploadProject(e, fileInput, uploadProjectForm, modalWindows)
     })
 
     //Event listener to logout the logged-in user.
