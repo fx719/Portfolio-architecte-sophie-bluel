@@ -109,7 +109,7 @@ if (isAuthentified) {
     const fileInputDiv = document.querySelector('.upload-file-input')
     const fileInput = document.getElementById('photo-uploader-input')
     const uploadedPicturePreview = document.querySelector('.uploaded-picture-preview')
-
+    const neutralImgUrl = "./assets/icons/Vector.png"
 
     //Making sure all fields are complete before enabling the submit button
     uploadProjectFormWithoutButton.forEach(formElement => {
@@ -130,43 +130,7 @@ if (isAuthentified) {
 
     //Preview the user's sent picture
     fileInput.addEventListener('change', (e) => {
-
-        try {
-
-            const uploadedFile = fileInput.files[0]
-            const reader = new FileReader()
-            if (e.target.value === "") {
-                uploadedPicturePreview.src = "./assets/icons/Vector.png"
-                uploadedPicturePreview.removeAttribute("style")
-                fileInputDiv.removeAttribute("style")
-                for (let i = 1; i < fileInput.labels.length; i++) {
-
-                    fileInput.labels[i].removeAttribute("style")
-
-                }
-
-            }
-
-            if (uploadedFile === undefined) {
-
-            } else {
-                reader.readAsDataURL(uploadedFile)
-                reader.addEventListener('loadend', (loadEvent) => {
-                    uploadedPicturePreview.src = reader.result
-                    uploadedPicturePreview.setAttribute("style", "width : 100%; height: 149px; max-width: 100%;")
-
-                    for (let i = 1; i < fileInput.labels.length; i++) {
-
-                        fileInput.labels[i].setAttribute("style", "display: none;")
-
-                    }
-                    fileInputDiv.setAttribute("style", "padding-top: 0; padding-bottom: 0; gap: 0;")
-                })
-            }
-        } catch (error) {
-            console.error(error)
-        }
-
+        previewUploadedPicture(e, fileInput, neutralImgUrl, uploadedPicturePreview, fileInputDiv)
     })
 
 
