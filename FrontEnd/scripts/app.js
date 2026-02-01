@@ -135,7 +135,6 @@ if (isAuthentified) {
 
             const uploadedFile = fileInput.files[0]
             const reader = new FileReader()
-            console.log(e)
             if (e.target.value === "") {
                 uploadedPicturePreview.src = "./assets/icons/Vector.png"
                 uploadedPicturePreview.removeAttribute("style")
@@ -147,7 +146,6 @@ if (isAuthentified) {
                 }
 
             }
-            //note du 31/01 : factoriser ajout dynamique porjet dom en dessous en priorité (sûrement via les fonctions displayWorks etc.)
 
             if (uploadedFile === undefined) {
 
@@ -190,35 +188,8 @@ if (isAuthentified) {
                         data.append("category", uploadProjectForm[2].value)
                         sendDataToAPI('http://localhost:5678/api/works', data)
                             .then(r => {
-                                //Note du 31/01/26 à 16h15 : factoriser tout ça en priorité (sûrement via les fonctions displayWorks etc.)
-                                //Append project to portfolio gallery
-                                let figure = gallery.appendChild(document.createElement("figure"))
-                                figure.dataset.id = r.id
-                                figure.dataset.name = r.title
-                                figure.dataset.categoryId = r.categoryId
-                                let figureImg = figure.appendChild(document.createElement("img"))
-                                figureImg.setAttribute("src", r.imageUrl)
-                                figureImg.setAttribute("alt", r.title)
-                                let figureCaption = figure.appendChild(document.createElement("figcaption"))
-                                figureCaption.innerText = r.title
-
-                                //Append project to modal-window gallery
-                                let modalFigure = grid.appendChild(document.createElement("figure"))
-                                modalFigure.dataset.id = r.id
-                                modalFigure.dataset.name = r.title
-                                modalFigure.dataset.categoryId = r.categoryId
-
-                                let projectModalContent = modalFigure.appendChild(document.createElement("div"))
-                                projectModalContent.setAttribute("class", "project-grid-modal-image")
-
-                                let modalFigureImg = projectModalContent.appendChild(document.createElement("img"))
-                                modalFigureImg.setAttribute("src", r.imageUrl)
-                                modalFigureImg.setAttribute("alt", r.title)
-
-                                let deleteProjectButton = projectModalContent.appendChild(document.createElement("button"))
-                                deleteProjectButton.setAttribute("class", "delete-project-button")
-                                deleteProjectButton.dataset.projectId = r.id
-                                deleteProjectButton.innerHTML = '<i class="fa-solid fa-trash-can fa-sm"></i>'
+                                console.log(typeof r)
+                                appendNewWorkToDOM(gallery, grid, r)
                                 let deleteProjectButtons = document.querySelectorAll('.delete-project-button')
                                 deleteProject(deleteProjectButtons)
                                 modalWindows[1].close()
