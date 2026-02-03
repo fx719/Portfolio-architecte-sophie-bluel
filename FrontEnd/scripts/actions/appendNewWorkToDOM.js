@@ -1,3 +1,6 @@
+// Note du 02/02/26 22h22 : factoriser la partie figure dans une fonction appendProjectFigure et pareil pour l'img avec appendProjectImg, 
+// fonctions qui seront réutilisées plus tard dans displayWorks et displayworksByCategory, et également dans appendNewWorkToDOM
+
 /**
  * Append just-uploaded project to both homepage and modal-window galleries.
  * @param {HTMLElement} portfolioParentDiv 

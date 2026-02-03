@@ -38,7 +38,7 @@ getDataFromAPI("http://127.0.0.1:5678/api/categories")
         const workCategoryButtons = document.querySelectorAll('.work-category-button')
         for (let workCategoryButton of workCategoryButtons) {
             workCategoryButton.addEventListener("click", (e) => {
-                let buttonId = parseInt(e.target.dataset.id)
+                let buttonId = parseInt(e.target.dataset.categoryId)
                 displayWorksByCategory(gallery, buttonId)
             })
         }

@@ -16,7 +16,7 @@ function uploadProject(e, inputTypeFile, uploadForm, modalWindowsArray) {
         const uploadedFile = inputTypeFile.files[0]
         const titleField = uploadForm[1]
         const selectField = uploadForm[2]
-        const canUploadPictureFile = inputTypeFile.value !== "" && uploadedFile.size < 4194304 && (uploadedFile.name.endsWith('jpg') || uploadedFile.name.endsWith('png'))
+        const canUploadPictureFile = inputTypeFile.value !== "" && uploadedFile.size < 4194304 && (uploadedFile.name.endsWith('.jpg') || uploadedFile.name.endsWith('.png'))
         const titleIsComplete = textRegEx.test(titleField.value)
         const fieldIsntEmpty = selectField.value !== ""
 

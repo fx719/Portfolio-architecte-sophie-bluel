@@ -1,3 +1,5 @@
+// Note du 02/02/26 22h22 : factoriser la partie figure dans une fonction appendProjectFigure et pareil pour l'img avec appendProjectImg, 
+// fonctions qui seront réutilisées plus tard dans displayWorks et displayworksByCategory, et également dans appendNewWorkToDOM
 
 /**
  * Appends pictures and their titles to an element, idealy a div (parentDiv), from an API reached with the getDataFromAPI function.
