@@ -33,6 +33,9 @@ function uploadProject(e, inputTypeFile, uploadForm, modalWindowsArray) {
                             deleteProject(deleteProjectButtons)
                             modalWindowsArray[1].close()
                             modalWindowsArray[0].showModal()
+                            // Updates the focusablElements to keep trapping the focus in the first modal window.
+                            getFocusableElements(modalWindowsArray[0])
+
                         })
 
                 } else {
