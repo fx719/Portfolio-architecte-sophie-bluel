@@ -1,6 +1,3 @@
-// Note du 02/02/26 22h22 : factoriser la partie figure dans une fonction appendProjectFigure et pareil pour l'img avec appendProjectImg, 
-// fonctions qui seront réutilisées plus tard dans displayWorks et displayworksByCategory, et également dans appendNewWorkToDOM
-
 /**
  * Appends pictures and their titles to an element, idealy a div (parentDiv), from an API reached with the getDataFromAPI function.
  * Throws an Error if the requested Data can't be found or if the parent Element can't be found in the DOM.
@@ -13,16 +10,11 @@ const displayWorks = (parentDiv, fetchedData) => {
         const hasFoundParentDiv = parentDiv != null || parentDiv != undefined
         if (hasFoundData) {
             if (hasFoundParentDiv) {
-                for (let data of fetchedData) {
-                    let figure = parentDiv.appendChild(document.createElement("figure"))
-                    figure.dataset.id = data.id
-                    figure.dataset.name = data.title
-                    figure.dataset.categoryId = data.categoryId
-                    let figureImg = figure.appendChild(document.createElement("img"))
-                    figureImg.setAttribute("src", data.imageUrl)
-                    figureImg.setAttribute("alt", data.title)
+                for (let projectData of fetchedData) {
+                    let figure = appendProjectFigure(parentDiv, projectData)
+                    let figureImg = appendProjectImg(figure, projectData)
                     let figureCaption = figure.appendChild(document.createElement("figcaption"))
-                    figureCaption.innerText = data.title
+                    figureCaption.innerText = projectData.title
                 }
             } else {
                 throw new Error('Element cant be found')
@@ -87,22 +79,17 @@ const displayWorksInModalGallery = (parentDiv, fetchedData) => {
         const hasFoundParentDiv = parentDiv != null || parentDiv != undefined
         if (hasFoundData) {
             if (hasFoundParentDiv) {
-                for (let data of fetchedData) {
-                    let figure = parentDiv.appendChild(document.createElement("figure"))
-                    figure.dataset.id = data.id
-                    figure.dataset.name = data.title
-                    figure.dataset.categoryId = data.categoryId
+                for (let projectData of fetchedData) {
+                    let figure = appendProjectFigure(parentDiv, projectData)
 
                     let projectModalContent = figure.appendChild(document.createElement("div"))
                     projectModalContent.setAttribute("class", "project-grid-modal-image")
 
-                    let figureImg = projectModalContent.appendChild(document.createElement("img"))
-                    figureImg.setAttribute("src", data.imageUrl)
-                    figureImg.setAttribute("alt", data.title)
+                    let figureImg = appendProjectImg(projectModalContent, projectData)
 
                     let deleteProjectButton = projectModalContent.appendChild(document.createElement("button"))
                     deleteProjectButton.setAttribute("class", "delete-project-button")
-                    deleteProjectButton.dataset.projectId = data.id
+                    deleteProjectButton.dataset.projectId = projectData.id
                     deleteProjectButton.innerHTML = '<i class="fa-solid fa-trash-can fa-sm"></i>'
                 }
             } else {

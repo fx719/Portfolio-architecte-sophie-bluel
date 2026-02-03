@@ -54,7 +54,7 @@ const displayCategoriesOptions = (parentSelect, fetchedCategory) => {
             if (hasFoundparentSelect) {
                 for (let data of fetchedCategory) {
                     let categoryOption = document.createElement("option")
-                    categoryOption.setAttribute('class', 'work-category-button')
+                    categoryOption.setAttribute('class', 'work-category-option')
                     categoryOption.dataset.categoryId = data.id
                     categoryOption.setAttribute("value", data.id)
                     categoryOption.setAttribute("class", "category-option")
