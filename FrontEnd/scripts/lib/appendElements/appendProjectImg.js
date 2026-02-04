@@ -1,5 +1,5 @@
 /**
- * Append an img element, using fetched data from the API.
+ * Appends an img element, using fetched data from the API.
  * Can be used in a loop.
  * @param {HTMLElement} element 
  * @param {string} data 

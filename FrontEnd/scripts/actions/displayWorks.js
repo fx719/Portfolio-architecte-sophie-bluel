@@ -87,10 +87,7 @@ const displayWorksInModalGallery = (parentDiv, fetchedData) => {
 
                     let figureImg = appendProjectImg(projectModalContent, projectData)
 
-                    let deleteProjectButton = projectModalContent.appendChild(document.createElement("button"))
-                    deleteProjectButton.setAttribute("class", "delete-project-button")
-                    deleteProjectButton.dataset.projectId = projectData.id
-                    deleteProjectButton.innerHTML = '<i class="fa-solid fa-trash-can fa-sm"></i>'
+                    let deleteProjectButton = appendDeleteButtons(projectModalContent, projectData)
                 }
             } else {
                 throw new Error('Element cant be found')

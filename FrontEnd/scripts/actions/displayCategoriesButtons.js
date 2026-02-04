@@ -57,7 +57,6 @@ const displayCategoriesOptions = (parentSelect, fetchedCategory) => {
                     categoryOption.setAttribute('class', 'work-category-option')
                     categoryOption.dataset.categoryId = data.id
                     categoryOption.setAttribute("value", data.id)
-                    categoryOption.setAttribute("class", "category-option")
                     categoryOption.innerText = data.name
                     parentSelect.appendChild(categoryOption)
                 }

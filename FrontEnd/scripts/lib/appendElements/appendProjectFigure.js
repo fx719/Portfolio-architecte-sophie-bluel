@@ -1,5 +1,5 @@
 /**
- * Append a figure element, using fetched data from the API.
+ * Appends a figure element, using fetched data from the API.
  * Can be used in a loop.
  * @param {HTMLDivElement} element 
  * @param {string} data 
