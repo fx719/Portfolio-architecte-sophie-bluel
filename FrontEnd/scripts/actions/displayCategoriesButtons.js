@@ -1,6 +1,3 @@
-// Note du 02/02/26 22h22 : factoriser la partie datasetting et innertexting dans une fonction, réutilisable dans displayCategoriesButtons et displayCategoriesOptions
-
-
 /**
  * Appends categorys'filters'buttons and their names to an element, idealy a div (parentDiv), from an API reached with the getDataFromAPI function.
  * Throws an Error if the requested Data can't be found or if the parent Element can't be found in the DOM.
@@ -17,11 +14,7 @@ const displayCategoriesButtons = (parentDiv, fetchedCategory) => {
         if (hasFoundData) {
             if (hasFoundparentDiv) {
                 for (let data of fetchedCategory) {
-                    let categoryButton = document.createElement("button")
-                    categoryButton.setAttribute('class', 'work-category-button')
-                    categoryButton.dataset.categoryId = data.id
-                    categoryButton.dataset.name = data.name
-                    categoryButton.innerText = data.name
+                    let categoryButton = createCategoryElements('button', data)
                     parentDiv.appendChild(categoryButton)
                 }
             } else {
@@ -53,11 +46,7 @@ const displayCategoriesOptions = (parentSelect, fetchedCategory) => {
         if (hasFoundData) {
             if (hasFoundparentSelect) {
                 for (let data of fetchedCategory) {
-                    let categoryOption = document.createElement("option")
-                    categoryOption.setAttribute('class', 'work-category-option')
-                    categoryOption.dataset.categoryId = data.id
-                    categoryOption.setAttribute("value", data.id)
-                    categoryOption.innerText = data.name
+                    let categoryOption = createCategoryElements('option', data)
                     parentSelect.appendChild(categoryOption)
                 }
             } else {
