@@ -37,6 +37,7 @@ function uploadProject(e, inputTypeFile, uploadForm, modalWindowsArray) {
                             getFocusableElements(modalWindowsArray[0])
 
                         })
+                        .catch(error => console.error(error))
 
                 } else {
                     flashError('uploadCategoryError', uploadForm)

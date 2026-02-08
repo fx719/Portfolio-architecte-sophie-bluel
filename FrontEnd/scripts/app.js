@@ -26,6 +26,7 @@ getDataFromAPI("http://127.0.0.1:5678/api/works")
             deleteProject(deleteProjectButtons)
         }
     })
+    .catch(error => console.error(error))
 
 
 //Contacts the API to get the categories'data, used to display the filter's button, then displays them.
@@ -43,6 +44,7 @@ getDataFromAPI("http://127.0.0.1:5678/api/categories")
             })
         }
     })
+    .catch(error => console.error(error))
 
 
 if (isAuthentified) {
