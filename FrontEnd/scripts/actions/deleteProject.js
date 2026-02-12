@@ -26,7 +26,7 @@ function deleteProject(buttonsCollection) {
                     projectDOMElements.forEach(projectDOMElement => projectDOMElement.remove())
                     focusableElements = getFocusableElements(deleteProjectModalWindow)
                 })
-                .catch(r => console.log(r))
+                .catch(r => console.error(r))
 
         })
     })

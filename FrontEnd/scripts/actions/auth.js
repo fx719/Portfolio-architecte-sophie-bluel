@@ -19,8 +19,8 @@ authSubmission.addEventListener('click', (e) => {
             window.sessionStorage.setItem('token', data.token)
             window.location = "./../index.html"
         })
-        .catch(() => {
-            // authForm.appendChild(flashMessageErrorAuth)
+        .catch((error) => {
+            console.error(error)
             flashError('authError', authForm)
         })
 })

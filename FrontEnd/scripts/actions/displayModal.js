@@ -16,8 +16,6 @@ function displayModal(e, closeModalWindowButtons, goBackButton) {
 
     let modalWindowNumber = 0
 
-    modalWindow.setAttribute("autofocus", true)
-    modalWindow.focus()
 
     modalWindow.showModal()
     modalWindow.children[0].focus()
